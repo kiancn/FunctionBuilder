@@ -54,7 +54,7 @@ public class Main
         // og det her har potentiale:
         System.out.println(" 2 x 2 er " + equateIt(multiply, 2,2));
         System.out.println(" ((x + y ) ^ z) - w ");
-        System.out.println(" ((13 + 34 ) ^ 21) - 21 " + equateIt());
+        System.out.println(" ((13 + 34) ^ 6) - 21 " + equateIt(function,13,34,21,21));
 
     }
 
