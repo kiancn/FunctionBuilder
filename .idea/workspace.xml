@@ -4,7 +4,9 @@
     <list default="true" id="69fb96d3-b2da-4a9d-98b0-4870a3744d16" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kcn/test/Equation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/test/Calculation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kcn/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/test/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kcn/test/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/test/Operator.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +36,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -53,7 +56,17 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Main (1)">
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="kcn.Main" />
+      <module name="MathFunc" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="kcn.test.Main" />
       <module name="MathFunc" />
       <extension name="coverage">
@@ -62,16 +75,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="kcn.Main" />
-      <module name="MathFunc" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -111,7 +114,7 @@
       <option name="presentableId" value="Default" />
       <updated>1574237316514</updated>
       <workItem from="1574237321931" duration="18607000" />
-      <workItem from="1574262017887" duration="99000" />
+      <workItem from="1574262017887" duration="3194000" />
     </task>
     <servers />
   </component>
@@ -130,5 +133,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/FunctionBuilder" />
+    </ignored-roots>
   </component>
 </project>

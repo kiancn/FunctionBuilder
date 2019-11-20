@@ -2,11 +2,11 @@ package kcn.test;
 
 import java.util.ArrayList;
 
-public class Equation
+public class Calculation
 {
     private final Operator[] operators; // operators will operate on the factors
 
-    private Equation(FuncBuilder builder)
+    private Calculation(CalcBuilder builder)
     {
         operators = new Operator[builder.operators.size()];
 
@@ -18,7 +18,7 @@ public class Equation
         }
     }
 
-    public Equation(Operator... operatorList)
+    public Calculation(Operator... operatorList)
     {
         operators = new Operator[operatorList.length];
         for(int i = 0; i < operatorList.length; i++)
@@ -64,7 +64,7 @@ public class Equation
                 case Mod:
                     runningTotal %= inputFactors[i];
                     break;
-                case Pot:
+                case Pow:
                     runningTotal = Math.pow(runningTotal, inputFactors[i]);
                     break;
                 case Root:
@@ -81,69 +81,73 @@ public class Equation
 //        Divide, Minus, Mod, Multiply, Plus, Pot, SqrRoot
 //    }
 
-    public static class FuncBuilder
+    public static class CalcBuilder
     {
         private ArrayList<Operator> operators;
 
-        public FuncBuilder create()
+        public CalcBuilder create()
         {
             operators = new ArrayList<>();
             return this;
         }
 
-        public FuncBuilder plus()
+        public CalcBuilder plus()
         {
             operators.add(Operator.Plus);
             return this;
         }
 
-        public FuncBuilder minus()
+        public CalcBuilder minus()
         {
             operators.add(Operator.Minus);
             return this;
         }
 
-        public FuncBuilder dividedBy()
+        public CalcBuilder dividedBy()
         {
             operators.add(Operator.Divide);
             return this;
         }
 
-        public FuncBuilder modulus()
+        public CalcBuilder modulus()
         {
             operators.add(Operator.Mod);
             return this;
         }
 
         // I decided off the bat to double the potency method, because I like the second name better.
-        public FuncBuilder pow()
+        public CalcBuilder pow()
         {
-            operators.add(Operator.Pot);
+            operators.add(Operator.Pow);
             return this;
         }
         // I decided off the bat to double the potency method, because I like the second name better. It's
         // bad style, I know.
-        public FuncBuilder raisedBy()
+        public CalcBuilder raisedBy()
         {
-            operators.add(Operator.Pot);
+            operators.add(Operator.Pow);
             return this;
         }
 
-        public FuncBuilder root()
+        public CalcBuilder root()
         {
             operators.add(Operator.Root);
             return this;
         }
 
-        public FuncBuilder multiplyBy()
+        public CalcBuilder multiplyBy()
         {
             operators.add(Operator.Multiply);
             return this;
         }
 
-        public Equation build()
+        public Calculation build()
         {
-            return new Equation(this);
+            return new Calculation(this);
         }
+    }
+
+    public static double equateIt(Calculation calculation, double... values){
+        return calculation.calc(values);
     }
 }
