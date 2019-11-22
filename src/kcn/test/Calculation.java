@@ -13,17 +13,14 @@ public class Calculation
     private ArrayList<Operator> listOfBindingOperators;
     private ArrayList<ArrayList<Operator>> listsOfExpressionOperators; // list contains lists of operators; a list
 
-    private int positionInFactorCount; // tracks position in
+//    private int positionInFactorCount; // tracks position in
 
     private Calculation(CalcBuilder builder)
     {
         listOfBindingOperators = builder.listOfBindingOperators;
         listsOfExpressionOperators = builder.listsOfExpressionOperators;
-
         numberOfExpressions = builder.numberOfExpressions;
         numberOfFactors = builder.numberOfFactors;
-
-        positionInFactorCount = 0;
     }
 
     public static double equateIt(Calculation calculation, double... values)
@@ -42,7 +39,7 @@ public class Calculation
         System.out.println("Binding operators: " + listOfBindingOperators);
         /////
 
-        positionInFactorCount = 0; // resetting position for new calculation
+       int positionInFactorCount = 0; // resetting position for new calculation
 
         // do check of number of factors supplied/expected
         if(inputFactors.length != numberOfFactors)
@@ -51,21 +48,19 @@ public class Calculation
                                + ". This equation requires " + numberOfFactors + " variables.");
             return -1;
         }
-
-
-        double[] expressionResults = new double[numberOfExpressions]; 
+        /* keeps track of results of each expression */
+        double[] expressionResults = new double[numberOfExpressions];
 
         /* this value is ++'ed every time an Expression is encountered */
-        // do all the calculations
         for(int expressionCount = 0; expressionCount < numberOfExpressions; expressionCount++)
         {
             expressionResults[expressionCount] =
-                    calculateExpression(listsOfExpressionOperators.get(expressionCount), inputFactors, positionInFactorCount);
+                    calculateExpression(listsOfExpressionOperators.get(expressionCount),
+                                        inputFactors,
+                                        positionInFactorCount);
 
             positionInFactorCount += listsOfExpressionOperators.get(expressionCount).size() + 1;
         }
-
-
 
         /* if there is only one result, return that calculation */
         if(listOfBindingOperators.size() == 0)
@@ -74,6 +69,7 @@ public class Calculation
         }
         // else, return the calculation of the combined function/expression (it has severe limits to be
         // described; )
+
         return calculateExpression(listOfBindingOperators, expressionResults, 0);
     }
 

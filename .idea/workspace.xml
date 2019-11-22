@@ -3,14 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="69fb96d3-b2da-4a9d-98b0-4870a3744d16" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Equation$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Equation$FuncBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Equation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation$CalcBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation$CalcBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Operator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Operator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kcn/test/Calculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/test/Calculation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kcn/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/test/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kcn/test/Scalar.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -136,7 +134,7 @@
       <workItem from="1574237321931" duration="18607000" />
       <workItem from="1574262017887" duration="19588000" />
       <workItem from="1574283870509" duration="4042000" />
-      <workItem from="1574322162729" duration="35055000" />
+      <workItem from="1574322162729" duration="37939000" />
     </task>
     <servers />
   </component>

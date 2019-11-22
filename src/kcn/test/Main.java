@@ -33,7 +33,7 @@ public class Main
                 pow(). // ((x^y)+(z^v))w'nd-root
                 expression().plus().
                 pow().
-                expression().root()
+                expression().root().expression()
                 .build();
 
         System.out.println("sprRoot(5^2 + 4^2) = " + pytagoras.calc(5, 2, 4, 2, 2));
@@ -49,6 +49,7 @@ public class Main
                         .build();
         System.out.println(randCalc.calc(1, 2, 3, 4, 5, 6));
 
+        System.out.println("Growth formula");
         Calculation growth = new Calculation.CalcBuilder().
                 create().
                 expression().multiply().
