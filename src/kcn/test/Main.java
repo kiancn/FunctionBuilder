@@ -3,10 +3,13 @@ package kcn.test;
 public class Main
 {
     /**
-     * Den her form virker kun på få typer udtryk; det er ikke muligt at lave udtryk med 'flere
-     * parenteser'; er ved at indse mangler lige nu, og skriver videre,
-     * men prøv at lave nogle funktioner.
-     * Differentieringen skal jeg lige tygge på, det ser slet ikke umuligt ud;
+     * Works on many types of expressions new. I'll define the limits later -
+     * Live with the debug messages, or not. they saved my ass and will be removed
+     * Next small goal is proper commenting of all parts of code.
+     * Next BIG goal is a string parser able to interpret standard java math notation (from string) -
+     * and create and the calculation object from that.
+     * create
+     * the
      */
 
     public static void main(String[] args)
@@ -20,54 +23,43 @@ public class Main
                         build(); //((x + y)^z)-w
         //((x + y)^z)-w
         System.out.println(someCalculation.calc(2, 3, 2, 5)); // ((2 + 3)^2)-5
-        System.out.println(someCalculation.calc(4, 2, 5, 500)); // ((4 + 2)^5)-500
-
-        // du kan self også:
 
 
-        double x = 2;
-        double y = 5;
-        System.out.println(" (2+2)^5-2 = "+ someCalculation.calc(x, x, y, x)); // (2+2)^5-2
+        System.out.println(" ((13 + 34) ^ 6) - 21 =" + Calculation.equateIt(someCalculation, 13, 34, 6, 21));
 
-        // og de kan indsættes i hinanden...
+        // Endnu vildere:
 
-        Calculation raisingFunction = new Calculation.CalcBuilder().
-                create().
+        Calculation pytagoras = new Calculation.CalcBuilder().create().
+                pow(). // ((x^y)+(z^v))w'nd-root
+                expression().plus().
                 pow().
+                expression().root()
+                .build();
+
+        System.out.println("sprRoot(5^2 + 4^2) = " + pytagoras.calc(5, 2, 4, 2, 2));
+        System.out.println("sprRoot(3^2 + 4^2) = " + pytagoras.calc(3, 2, 4, 2, 2));
+
+        Calculation randCalc =
+                new Calculation.CalcBuilder().create()
+                        .plus() // ((x+y)+z)+((v+w)*u)
+                        .plus()
+                        .expression().plus().
+                        plus().
+                        multiply()
+                        .build();
+        System.out.println(randCalc.calc(1, 2, 3, 4, 5, 6));
+
+        Calculation growth = new Calculation.CalcBuilder().
+                create().
+                expression().multiply().
+                plus().
                 build();
 
-        System.out.println(
-                raisingFunction.calc(
-                        someCalculation.calc(x, x, y, x),
-                        someCalculation.calc(1, 1, x, x))
-                          );
-
-        // ... og så har jeg lavet et alternativ til builder-patternet, måske bedre til runtime;
-        // en konstuktør hvor du simpelthen supplerer en liste af Operators.
-
-        Calculation multiply = new Calculation(Operator.Multiply);
-
-        System.out.println(multiply.calc(10,5));
-
-        // det er måske imod hele formålet, men selvfølgelig kan de også bruges i kald
-        System.out.println("Den retvinklede trekant med korte sider 2 , 3 har langside på: " + hypotenuseOfRightAngledTriangle(3,3));
-        System.out.println("Den retvinklede trekant med korte sider 3 , 4 har langside på: " + hypotenuseOfRightAngledTriangle(3,4));
-
-        // og det her har potentiale:
-        System.out.println(" 2 x 2 er " + Calculation.equateIt(multiply, 2, 2));
-        System.out.println(" ((x + y ) ^ z) - w ");
-        System.out.println(" ((13 + 34) ^ 6) - 21 ="
-                           + Calculation.equateIt(someCalculation, 13, 34, 21, 21));
-
+        System.out.println(growth.calc(10, -0.5, 1));
 
     }
 
-    public static double hypotenuseOfRightAngledTriangle(double side1, double side2){
 
-        Calculation calculation = new Calculation.CalcBuilder().create().plus().root().build();
-
-        return calculation.calc(side1 * side1, side2 * side2, 2);
-    }
 
     // Read in case of trouble: remember, first number is assumed in the definition of the equation.
 

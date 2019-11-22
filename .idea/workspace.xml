@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69fb96d3-b2da-4a9d-98b0-4870a3744d16" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kcn/test/Equation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/test/Calculation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Equation$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Equation$FuncBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Equation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Operator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Operator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kcn/test/Calculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/test/Calculation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kcn/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/test/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kcn/test/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/test/Operator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kcn/test/Scalar.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,13 +34,16 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="full.screen.before.presentation.mode" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -56,6 +63,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kcn.test.Main" />
+      <module name="MathFunc" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="kcn.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="kcn.Main" />
       <module name="MathFunc" />
@@ -114,7 +134,9 @@
       <option name="presentableId" value="Default" />
       <updated>1574237316514</updated>
       <workItem from="1574237321931" duration="18607000" />
-      <workItem from="1574262017887" duration="3194000" />
+      <workItem from="1574262017887" duration="19588000" />
+      <workItem from="1574283870509" duration="4042000" />
+      <workItem from="1574322162729" duration="35055000" />
     </task>
     <servers />
   </component>
