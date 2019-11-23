@@ -1,4 +1,4 @@
-# FunctionBuilder
+# FunctionBuilder - more like Calculation builder.
  
 The Calculation class allows the creation of objects able to perform complex calculations.
 <p>You can check out the examples in the CalculationTest-class.</p>
@@ -42,16 +42,30 @@ of the previous calculations AND the binding operators (:a binding operators bin
 through its operation upon them (and the result)); it is resolved/calculated, and there is your
 answer...</p>
 <p></p>
-<p> <b>A single expression</b> consist of factors (numbers) and operators; the term is here used so that
+<p>A <b>single expression</b> consist of factors (numbers) and operators; the term is here used so that
 an expression is any set of factors and operators that can be evaluated/calculated going from left to
 right (see rules).</p>
+<p>A <b>binding operator is any operator <i>+, -, /, *, mod, pow </i>or<i> root</i></b> acting on
+two expressions that could be written in seperate parenthesis, like <i>(2) * (5+7)</i> where * is a binding operator.</p>
+
+     // To turn an operater into a binding operator, call expression() before calling the <operator>() 
+     // Declaring a + operator in a calculation as a binding operator is done like this:
+     
+     ...().expression().plus(). ..
+           
+     // And just to hammer home the principle; a - can be declared as binding like:
+     
+     ...().expression().minus(). ..           
+     
+
 <p></p>
 
 ![There are rules](https://raw.githubusercontent.com/kiancn/FunctionBuilder/master/ThereAreNoRules.png)
 <p><b>There are a few rules:</b></p>
-<p><i><b>1. Expressions are evaluated left to right, </b></i>
-<p>a. A <i><b>single</b></i> expression must have non-binding operators mentioned
-before the mention of binding operators: </p>
+<p><i><b>1. Expressions are evaluated left to right: </b></i>
+<p>b. <i>Operators <b>act</b> on the running total/result of current expression </i>with the next
+single factor (for a binding operator, this is the next whole expression)):
+<\runningResult \operator \nextFactor></runningResult></b></p>
 <b>Practical example:</b>
 <p>This is a possible single expression: ((4+6)/5)*2</p>
 
@@ -75,9 +89,6 @@ before the mention of binding operators: </p>
      // to declare it, as immidiately above, using the expression() method indicate
      // the separation of the two calculations.
      
-<p>b. <i>Operators <b>act</b> on the running total/result of current expression </i>with the next
-single factor (for a binding operator, this is the next whole expression)):
-<\runningResult \operator \nextFactor></runningResult></b></p>
 <p></p>
 <p><b><i>2. A calculation with binding operators can have nested binding operators ONLY IF</i></b>
 the nests can be resolved with the second calculation round (see above) being made
@@ -89,6 +100,5 @@ number/factor, and the the right operand is an (evaluated) expression.</p>
 <p></p>
 <p><i>There are probably a few more rules that I didn't realize yet, sorry. This is a work in
 progress and I'm not a mathematician.</i></p>
-<p></p>
-<p>* There is no square-root, but there is a root(),
-which is the general root function ('sqrRoot of x' is 'x root 2')</p>
+<p></p><p></p>
+<p><b>All comments and feedback is welcome; this is work in progress, and I'd love great ideas.1</b></p>
