@@ -187,7 +187,6 @@ public class Calculation
 
         public CalcBuilder create()
         {
-
             listOfBindingOperators = new ArrayList<>();
             listsOfExpressionOperators = new ArrayList<>();
             listsOfExpressionOperators.add(new ArrayList<>()); // newing up the first list
@@ -231,6 +230,13 @@ public class Calculation
          * <p>a) that <i>that next operator</i> will act on all previously
          * calculated expressions,</p>
          * <p>and b) the operator(-method) after the binding operator starts a new expression</p>
+         * <p>Important: if expression() is placed before any other operator, like this;
+         * <p><p><i>create().expression().<\operator>()>. ... </i></p></p>
+         * the first factor in the calculation (when calling calc()) will be acted upon
+         * by the operator defined by the call following the expression()-call), so;</p>
+         * <p><p><i>create().expression().<\OPERATOR>()>. ... </i></p></p>
+         * <p> <>See examples is test class for clarification for now. I'm out of juice.<> </p>
+         *
          */
         public CalcBuilder expression()
         {

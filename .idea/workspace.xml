@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69fb96d3-b2da-4a9d-98b0-4870a3744d16" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kcn/test/CalculationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation$CalcBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Operator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kcn/test/Calculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/calculation/Calculation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kcn/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/calculation/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kcn/test/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/calculation/Operator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kcn/calculation/Calculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/calculation/Calculation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kcn/calculation/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/calculation/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -146,7 +138,7 @@
       <workItem from="1574435966515" duration="96000" />
       <workItem from="1574445022194" duration="931000" />
       <workItem from="1574446069659" duration="10573000" />
-      <workItem from="1574496254774" duration="10966000" />
+      <workItem from="1574496254774" duration="14360000" />
     </task>
     <servers />
   </component>
