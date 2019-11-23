@@ -225,7 +225,7 @@ public class Calculation
         }
 
         /**
-         * Conceptually expression() indicates the seperation of two expression
+         * Conceptually expression() indicates the separation of two expression
          * AND that next mentioned operator is a binding operator: this means
          * <p>a) that <i>that next operator</i> will act on all previously
          * calculated expressions,</p>
