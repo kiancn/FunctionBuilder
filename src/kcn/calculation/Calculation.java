@@ -254,7 +254,7 @@ public class Calculation
             return addOperator(Operator.Minus);
         }
 
-        public CalcBuilder dividedBy()
+        public CalcBuilder divideBy()
         {
             return addOperator(Operator.Divide);
         }
@@ -264,14 +264,13 @@ public class Calculation
             return addOperator(Operator.Mod);
         }
 
-        // I decided off the bat to double the potency method, because I like the second name better.
+        // I decided off the bat to double the potency method, because I like the second name better. It's
+        // bad style, I know. Functionality is identical; pow == raisedBy = true ....
         public CalcBuilder pow()
         {
             return addOperator(Operator.Pow);
         }
 
-        // I decided off the bat to double the potency method, because I like the second name better. It's
-        // bad style, I know.
         public CalcBuilder raisedBy()
         {
             return addOperator(Operator.Pow);
