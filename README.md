@@ -46,7 +46,9 @@ answer...</p>
 an expression is any set of factors and operators that can be evaluated/calculated going from left to
 right (see rules).</p>
 <p></p>
-<p>There are a few rules:</p>
+
+![There are rules](https://raw.githubusercontent.com/kiancn/FunctionBuilder/master/ThereAreNoRules.png)
+<p><b>There are a few rules:</b></p>
 <p><i><b>1. Expressions are evaluated left to right, </b></i>
 <p>a. A <i><b>single</b></i> expression must have non-binding operators mentioned
 before the mention of binding operators: </p>
@@ -90,4 +92,3 @@ progress and I'm not a mathematician.</i></p>
 <p></p>
 <p>* There is no square-root, but there is a root(),
 which is the general root function ('sqrRoot of x' is 'x root 2')</p>
-<p>* </p>
