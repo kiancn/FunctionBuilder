@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69fb96d3-b2da-4a9d-98b0-4870a3744d16" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kcn/calculation/Calculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/calculation/Calculation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kcn/calculation/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/calculation/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +40,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -58,7 +60,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="kcn.calculation.Main" />
       <module name="MathFunc" />
@@ -136,7 +138,8 @@
       <workItem from="1574435966515" duration="96000" />
       <workItem from="1574445022194" duration="931000" />
       <workItem from="1574446069659" duration="10573000" />
-      <workItem from="1574496254774" duration="14742000" />
+      <workItem from="1574496254774" duration="17022000" />
+      <workItem from="1574517899604" duration="368000" />
     </task>
     <servers />
   </component>

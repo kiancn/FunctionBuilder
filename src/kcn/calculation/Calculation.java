@@ -7,6 +7,8 @@ import java.util.ArrayList;
 /**
  * The Calculation class allows the creation of objects able to perform complex calculations.
  * <p>You can check out the examples in the CalculationTest-class.</p>
+ * <p> Please refer to the https://github.com/kiancn/FunctionBuilder/edit/master/README.md
+ * for information on use of the class; until a stable version is reached. </p>
  * <p></p>
  * <p><b>Calculations are evaluated in the following sequence of steps:</b></p>
  * <p>a. first all (single) expressions are resolved
@@ -20,31 +22,9 @@ import java.util.ArrayList;
  * <p> <b>A single expression</b> consist of factors (numbers) and operators; the term is here used so that
  * an expression is any set of factors and operators that can be evaluated/calculated going from left to
  * right (see rules).</p>
- * <p></p>
- * <p>There are a few rules:</p>
- * <p><i><b>1. Expressions are evaluated left to right, </b></i>
- * <p>a. A <i><b>single</b></i> expression must have non-binding operators mentioned
- * before the mention of binding operators: </p>
- * <b>Practical example:</b>
- * <p>This is a possible expression: (((4+6)/5)*2)</p>
- * <p>NOT a possible expression: (2*((4+6)/5))</p>
- * <p>b. <i>Operators <b>act</b> on the running total/result of current expression </i>with the next
- * single factor (for a binding operator, this is the next whole expression)):
- * <\runningResult \operator \nextFactor></runningResult></b></p>
- * <p></p>
- * <p><b><i>2. A calculation with binding operators can have nested binding operators ONLY IF</i></b>
- * the nests can be resolved with the second calculation round (see above) being made
- * strictly going left to right. (Internally, the 'second round' of calculation - where the binding
- * operators get to operate on the expressions evaluated in the 'first round') </p>
- * <p><b><i>3. If an ' expression().<\binding operator>() ' is placed first</i></b> in the declaration
- * of a calculation, this it is interpreted to mean the the binding operator left operand is a single
- * number/factor, and the the right operand is an (evaluated) expression.</p>
- * <p></p>
- * <p><i>There are probably a few more rules that I didn't realize yet, sorry. This is a work in
- * progress and I'm not a mathematician.</i></p>
- * <p>* There is no square-root, but there is a root(),
- * which is the general root function ('sqrRoot of x' is 'x root 2')</p>
- * <p>* </p>
+ * <p>A <b>binding operator is any operator <i>+, -, /, *, mod, pow </i>or<i> root</i></b> acting on
+ * two expressions that could be written in seperate parenthesis, like <i>(2) * (5+7)</i>  - here * is a
+ * binding operator.</p>
  */
 public class Calculation
 {

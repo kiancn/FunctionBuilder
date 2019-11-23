@@ -5,7 +5,7 @@ import kcn.test.CalculationTest;
 public class Main
 {
     /**
-     * Works on many types of expressions new. I'll define the limits later -
+     * Works on many types of expressions now. I'll define the limits later -
      * Live with the debug messages, or not. they saved my ass and will be removed
      * Next small goal is proper commenting of all parts of code.
      * Next medium goal is making it possible to define a constant at declaration time.
@@ -28,7 +28,7 @@ public class Main
 
                 pow(). // analogous to:                 ((x^y
                 expression().plus(). // analogous to:   )+(
-                pow(). // analogous to:                 x^y
+                pow(). // analogous to:                 z^v
                 expression().root() // analogous to:    ))root(w)
 
                 .build(); // returns the finished Calculation object
