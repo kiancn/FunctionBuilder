@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69fb96d3-b2da-4a9d-98b0-4870a3744d16" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kcn/test/CalculationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation$CalcBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation$CalcBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kcn/test/Calculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/test/Calculation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kcn/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/test/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation$CalcBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Calculation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MathFunc/kcn/test/Operator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kcn/test/Calculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/calculation/Calculation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kcn/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/calculation/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kcn/test/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/calculation/Operator.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -41,10 +45,14 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="kcn.calculation" />
       <recent name="kcn" />
     </key>
   </component>
@@ -60,13 +68,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
+  <component name="RunManager">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kcn.test.Main" />
+      <option name="MAIN_CLASS_NAME" value="kcn.calculation.Main" />
       <module name="MathFunc" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="kcn.test.*" />
+          <option name="PATTERN" value="kcn.calculation.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -74,12 +82,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="kcn.Main" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kcn.calculation.Main" />
       <module name="MathFunc" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="kcn.calculation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -110,14 +121,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Application.Main (1)" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -134,7 +140,13 @@
       <workItem from="1574237321931" duration="18607000" />
       <workItem from="1574262017887" duration="19588000" />
       <workItem from="1574283870509" duration="4042000" />
-      <workItem from="1574322162729" duration="37939000" />
+      <workItem from="1574322162729" duration="40576000" />
+      <workItem from="1574435736728" duration="86000" />
+      <workItem from="1574435843657" duration="103000" />
+      <workItem from="1574435966515" duration="96000" />
+      <workItem from="1574445022194" duration="931000" />
+      <workItem from="1574446069659" duration="10573000" />
+      <workItem from="1574496254774" duration="10966000" />
     </task>
     <servers />
   </component>
