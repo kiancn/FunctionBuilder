@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kcn/calculation/Calculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/calculation/Calculation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kcn/calculation/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/calculation/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kcn/test/CalculationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kcn/test/CalculationTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +41,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -115,6 +116,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main (1)" />
       </list>
     </recent_temporary>
@@ -140,6 +142,10 @@
       <workItem from="1574446069659" duration="10573000" />
       <workItem from="1574496254774" duration="17022000" />
       <workItem from="1574517899604" duration="368000" />
+      <workItem from="1574518316669" duration="34000" />
+      <workItem from="1574553096161" duration="3378000" />
+      <workItem from="1574560760847" duration="21440000" />
+      <workItem from="1574615267945" duration="2555000" />
     </task>
     <servers />
   </component>

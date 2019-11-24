@@ -1,8 +1,12 @@
 package kcn.calculation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
-/* This solution satisfies a lot of lacks of the first one, and I believe */
+/* This solution satisfies a lot of lacks of the first one, and I believe
+ * -- ++ added support for constants right now
+ * -- support for unary operators upcoming */
 
 /**
  * The Calculation class allows the creation of objects able to perform complex calculations.
@@ -30,13 +34,22 @@ public class Calculation
 {
 
     private final int numberOfExpressions;
-    private final int numberOfFactors;
+    private final int numberOfFactors; // total number of factors in calculation
+    private final int numberOfInputFactorsExpected; // number of arguments expected from user
 
+    private HashMap<Integer, Double> constants; // <K,V> Key is position in sequence of factors, and V is
+    // the constant itself; the hashmap is interpolated into the given arguments when calling calc() before
+    // any calculations are done.
+
+    private ArrayList<ArrayList<Operator>> listsOfExpressionOperators; // lists of operators; operators for
+    // first round of calculations.
     private ArrayList<Operator> listOfBindingOperators;
-    private ArrayList<ArrayList<Operator>> listsOfExpressionOperators; // list contains lists of operators; a list
 
-    //    private int positionInFactorCount; // tracks position in
+
     private boolean logCalculationToConsole; // if true, Calculation object will log procress to console.
+
+    private double[] currentInputFactors; // this field/attribute is reassigned every time calc() is called
+    // and modified for constants before first calculations take place.
 
     private Calculation(CalcBuilder builder)
     {
@@ -44,6 +57,9 @@ public class Calculation
         listsOfExpressionOperators = builder.listsOfExpressionOperators;
         numberOfExpressions = builder.numberOfExpressions;
         numberOfFactors = builder.numberOfFactors;
+        numberOfInputFactorsExpected = builder.numberOfArgumentsRequired;  // this
+
+        constants = builder.constants;
     }
 
     public static double equateIt(Calculation calculation, double... values)
@@ -52,16 +68,14 @@ public class Calculation
     }
 
     /**
-     * Calll method with to turn on logging of calculation process and calculation stats on
+     * Returns the result of the calculation
+     * should fail fast if number of factors does not equal the expected number.
      */
-    public void logToConsole(boolean logCalculationToConsole)
-    {
-        this.logCalculationToConsole = logCalculationToConsole;
-    }
-
-    /* should fail fast if number of factors does not equal the expected number. */
     public double calc(double... inputFactors)
     {
+        currentInputFactors = inputFactors;
+
+        /* if logging is turned on, print info: */
         if(logCalculationToConsole)
         {
             System.out.print("\nSupplied values: ");
@@ -70,40 +84,98 @@ public class Calculation
             System.out.println("Binding operators: " + listOfBindingOperators);
         }
 
-        int positionInFactorCount = 0; // resetting position for new calculation
-
-        // do check of number of factors supplied/expected
-        if(inputFactors.length != numberOfFactors)
+        /* do check of number of factors supplied/expected; abort if no match is found  */
+        if(currentInputFactors.length != numberOfInputFactorsExpected + 1)
         {
-            System.out.println("From Func: Wrong number of variables input:" + inputFactors.length
-                               + ". This equation requires " + numberOfFactors + " variables.");
+            System.out.println("From Func: Wrong number of arguments given:" + currentInputFactors.length
+                               + ". This equation requires " + numberOfInputFactorsExpected + " arguments.");
             return -1;
         }
-        /* keeps track of results of each expression */
-        double[] expressionResults = new double[numberOfExpressions];
 
-        /* Calculating 'first level' of expressions (expressions between binding operators) */
+        /* inserting constants in supplied sequence of if necessary */
+        if(numberOfFactors != numberOfInputFactorsExpected) // if these are not equal, there are constants
+        {
+            /* ArrayList is temporary home of factor list under construction*/
+            currentInputFactors = includeConstantsWithInputFactors(currentInputFactors);
+        }
+
+        /* holds results of each expression (results from first round of calcs) */
+        double[] expressionResults = new double[numberOfExpressions];
+        /**/
+        int positionInFactorCount = 0;
+
+        /* Calculating 'first round' of expressions (expressions between binding operators),
+         * iteraing through the lists of expression operators while going through array of actual factors */
+
         for(int expressionCount = 0; expressionCount < numberOfExpressions; expressionCount++)
         {
             expressionResults[expressionCount] =
                     calculateExpression(listsOfExpressionOperators.get(expressionCount),
-                                        inputFactors,
+                                        currentInputFactors,
                                         positionInFactorCount);
 
             positionInFactorCount += listsOfExpressionOperators.get(expressionCount).size() + 1;
         }
 
-        /* if there is only one result, return that calculation */
+        /* if there are no binding operators, calculation has completed; so, return that calculation */
         if(listOfBindingOperators.size() == 0)
         {
             return expressionResults[expressionResults.length - 1];
         }
-        // else, return the calculation of the combined function/expressions
-        return calculateExpression(listOfBindingOperators, expressionResults, 0);
+
+        /* else, do 'second round' of calculations on the results of first round of calculation; then return
+        that result */
+        return calculateExpression(listOfBindingOperators,
+                                   expressionResults,
+                                   0);
     }
 
+    private double[] includeConstantsWithInputFactors(double[] inputFactors)
+    {
+        if(logCalculationToConsole){ System.out.println("Constants:" + constants); }
 
-    private double calculateExpression(ArrayList<Operator> operators, double[] inputFactors,
+        ArrayList<Double> tempListOfFactors = new ArrayList<>();
+
+        /* adding each number to list (do not want to use Arrays.toList, it links the list and the array.) */
+        for(double number : inputFactors) { tempListOfFactors.add(number); }
+
+        //// NOT implemented: when the code is ready to accept repeated variables (ex. 'the same x' is
+        // acted on multiple times in formula), this is the place to interpolate repeating numbers
+        // (that are not constants) - into the HashMap constants ( which at the point needs another
+        // name )
+
+            /* going through HashMap constants, and adding/interpolating constants to/with temp list of
+            factors (see source of this solution at bottom ) */
+        for(HashMap.Entry<Integer, Double> constantsEntry : constants.entrySet())
+        {
+            /* adding each value at proper place in temp list */
+            tempListOfFactors.add(constantsEntry.getKey(), constantsEntry.getValue());
+            // since add(int,T) attempts to add T-element at supplied index, it should fail when
+            // trying to add an element beyond it current size , but doesn't; i believe the documentation is
+            // faulty, and that an element added at 'last index + 1' are simply add()'ed to the list, at
+            // the now existent index position (so it'd fail when sought index overshot by by than one).
+        }
+
+
+        /* Placing the newly unified complete set of factors into an array and returning it */
+        double[] unifiedFactorsArray = new double[tempListOfFactors.size()];
+        for(int i = 0; i < unifiedFactorsArray.length; i++)
+        {
+            unifiedFactorsArray[i] = tempListOfFactors.get(i);
+        }
+
+        if(logCalculationToConsole)
+        {
+            System.out.print("Full factor list:");
+            for(double number : unifiedFactorsArray) { System.out.print(" [" + number + "]"); }
+            System.out.println();
+        }
+
+        return unifiedFactorsArray;
+    }
+
+    private double calculateExpression(ArrayList<Operator> operators,
+                                       double[] inputFactors,
                                        int positionInFactorCount)
     {
         double tempResult = inputFactors[positionInFactorCount];
@@ -114,10 +186,13 @@ public class Calculation
             System.out.print("Calculation: " + tempResult);
         }
 
+        /* later improvements: it seems the unary operators will be their own switch statement; so actually a
+        method for unary operation expressions, and a method for binary operation statements .. */
+
         /* ' i ' is set up like it is because the traversal of actual input-Factors
          happens across the calculation of multiple expressions (the first round of calculations
-         go though user input arguments/numbers (and soon 'constants'), and the second go through the
-         results of the first round of calculations.*/
+         go though user input arguments/numbers (and soon 'constants'); the second rounds goes through the
+         results of the first round of calculated expressions. */
         for(int i = positionInFactorCount + 1, j = 0; j <= operators.size() - 1; i++, j++)
         {
             switch(operators.get(j))
@@ -144,6 +219,7 @@ public class Calculation
                     tempResult = Math.pow(Math.exp(1 / inputFactors[i]), Math.log(tempResult));
                     break;
             }
+
             if(logCalculationToConsole){System.out.print(" " + operators.get(j) + " " + inputFactors[i]);}
         }
 
@@ -152,17 +228,31 @@ public class Calculation
         return tempResult;
     }
 
+    /**
+     * Calll method with to 'true' turn on console-logging of calculation process and calculation stats on
+     */
+    public void logToConsole(boolean logCalculationToConsole)
+    {
+        this.logCalculationToConsole = logCalculationToConsole;
+    }
 
     /* Internal class - builder pattern ... electric magic */
 
     public static class CalcBuilder
     {
         private int numberOfExpressions;
-        private int numberOfFactors;
+        private int numberOfFactors; // total number of factors in calculation
+
+        private int numberOfConstants; // registered constants (each constant mean -=1 to
+        // numberOfInputFactorsForCalculation)
+        private int numberOfArgumentsRequired; // number of arguments required by final calculation
+
         private boolean newExpression = false;
 
         private ArrayList<Operator> listOfBindingOperators;
         private ArrayList<ArrayList<Operator>> listsOfExpressionOperators;
+
+        private HashMap<Integer, Double> constants; // K = pos in sequence of factors, V = constant value
 
 
         public CalcBuilder create()
@@ -172,15 +262,32 @@ public class Calculation
             listsOfExpressionOperators.add(new ArrayList<>()); // newing up the first list
 
             numberOfExpressions = 0;
-            numberOfFactors = 1;
+            numberOfFactors = 0; // new try-out
             newExpression = false;
+
+            constants = new HashMap<>();
+
             return this;
         }
 
         public Calculation build()
         {
-            numberOfFactors += numberOfExpressions;
-            numberOfExpressions += 1;
+            /* total number of factors in calculation;
+            given by registered number of operators + registered number of expressions
+            (because each expression means +1 factor in the calculation;;; because there is not added +1
+            to the operator mentioned after expression() is called):
+            (it seems this step is superfluous, since the +1 for each factor might as well be added when
+            the operator is added; so, restructure addOperator, please. ) */
+
+//            numberOfFactors += numberOfExpressions;
+
+            /* expected number of arguments from user will be the total number of factors minus the number
+            of constants in the calculation */
+            numberOfArgumentsRequired = numberOfFactors - numberOfConstants;
+
+            numberOfFactors += 1; // because, after the last operator add, there is always room for the
+            // factor it works on
+            numberOfExpressions += 1; // because there is always at least on expression.
             return new Calculation(this);
         }
 
@@ -193,14 +300,16 @@ public class Calculation
                 listOfBindingOperators.add(operator);
 
                 listsOfExpressionOperators.add(new ArrayList<Operator>());
+
                 numberOfExpressions++;
                 newExpression = false;
             } else
             {
-                /* add operator to the appropriate list of operators */
+                /* add operator to the appropriate current list of operators */
                 listsOfExpressionOperators.get(numberOfExpressions).add(operator);
-                numberOfFactors++;
             }
+
+            numberOfFactors++; // maybe this will allow constants the right position in factor list
             return this;
         }
 
@@ -216,11 +325,28 @@ public class Calculation
          * by the operator defined by the call following the expression()-call), so;</p>
          * <p><p><i>create().expression().<\OPERATOR>()>. ... </i></p></p>
          * <p> <>See examples is test class for clarification for now. I'm out of juice.<> </p>
-         *
          */
         public CalcBuilder expression()
         {
             newExpression = true;
+            return this;
+        }
+
+        /**
+         * Registers supplied constant
+         * Calling constant registers the current position (in the calculation being built)
+         * where a constant is desired, and 'saves' that constant for 'recall' at the
+         * time when calc() is called; at which point all constants will be reinserted into
+         * the list of user input factors to form the list of actual factors, that a calculation is
+         * performed on.
+         */
+        public CalcBuilder constant(double constant)
+        {
+            /* the numberOfFactors number argumented/supplied will be the POSITION in sequence of factors for
+            calculation AT WHICH the constant is added when running calc() on Calculation object */
+
+            constants.put(numberOfFactors, constant);
+            numberOfConstants++;
             return this;
         }
 
@@ -267,3 +393,7 @@ public class Calculation
         }
     }
 }
+
+/* Sources helpful during construction
+ * https://stackoverflow.com/questions/46898/how-do-i-efficiently-iterate-over-each-entry-in-a-java-map
+ * */

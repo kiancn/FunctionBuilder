@@ -46,13 +46,14 @@ public class CalculationTest
 
 
     /* radius of circle: ((x-a)^2+(y-b)^2)sqrt*/
-    public boolean test_radiusOfCircle(){
+    public boolean test_radiusOfCircle()
+    {
 
         double expectedResult = 5;
         double testResult;
 
         System.out.println("\nCalculationTest.test_radiusOfCircle");
-        System.out.println("@@@ Testing: ((x-a)^2+(y-b)^2)sqrt"+
+        System.out.println("@@@ Testing: ((x-a)^2+(y-b)^2)sqrt" +
                            "\t\t((5-2)^2+(6-2)^2)root2");
 
         Calculation radiusOfCircle = new Calculation.CalcBuilder().create().
@@ -62,21 +63,25 @@ public class CalculationTest
                 expression().root().
                 build();
 
-        testResult = radiusOfCircle.calc(5,2,2,6,2,2,2);
+        testResult = radiusOfCircle.calc(5, 2, 2, 6, 2, 2, 2);
 
         System.out.println("@@@ Expected answer was : " + expectedResult
                            + "\n@@@ Test result:        " + testResult);
 
         return testResult == expectedResult;
     }
-    /** Tests multiple complex/bound expressions;  */
-    public boolean test_radiusOfCircleX2(){
+
+    /**
+     * Tests multiple complex/bound expressions;
+     */
+    public boolean test_diameterOfCircle()
+    {
 
         double expectedResult = 10;
         double testResult;
 
         System.out.println("\nCalculationTest.test_radiusOfCircleX2");
-        System.out.println("@@@ Testing: (((x-a)^2+(y-b)^2)sqrt)*2)"+
+        System.out.println("@@@ Testing: (((x-a)^2+(y-b)^2)sqrt)*2)" +
                            "\t\t(((5-2)^2+(6-2)^2)root2)*2");
 
         Calculation radiusOfCircle = new Calculation.CalcBuilder().create().
@@ -89,11 +94,96 @@ public class CalculationTest
 
         radiusOfCircle.logToConsole(true);
 
-        testResult = radiusOfCircle.calc(5,2,2,6,2,2,2,2);
+        testResult = radiusOfCircle.calc(5, 2, 2, 6, 2, 2, 2, 2);
 
         System.out.println("@@@ Expected answer was : " + expectedResult
                            + "\n@@@ Test result:          " + testResult);
 
         return testResult == expectedResult;
+    }
+
+    /**
+     * Testing if the pythagorean theorem about the long side in a right angled triangle serves
+     * as a test to see it the insertion of constants work
+     **/
+    public boolean test_PythagorasWithConstants()
+    {
+
+        double expectedResult = 5;
+        double testResult;
+
+        Calculation pytTheorem = new Calculation.CalcBuilder().create().
+                pow().constant(2).
+                expression().plus().
+                pow().constant(2).
+                expression().root().constant(2).
+                build();
+
+        pytTheorem.logToConsole(true);
+
+        testResult = pytTheorem.calc(3, 4);
+
+        System.out.println("@@@ Expected answer was : " + expectedResult
+                           + "\n@@@ Test result:          " + testResult);
+        return (testResult == expectedResult);
+    }
+
+    public boolean test_Growth()
+    {
+        double expectedResult = 5;
+        double testResult;
+
+        Calculation growth = new Calculation.CalcBuilder().
+                create().
+                expression().multiply().
+                plus().
+                build();
+
+        growth.logToConsole(true);
+
+        testResult = growth.calc(10, 1, -0.5D);
+
+        System.out.println("@@@ Expected answer was : " + expectedResult
+                           + "\n@@@ Test result:          " + testResult);
+        return (testResult == expectedResult);
+    }
+
+    public boolean test_GrowthWithConstant()
+    {
+        double expectedResult = 5;
+        double testResult;
+
+        Calculation growth = new Calculation.CalcBuilder().
+                create().
+                expression().multiply().
+                constant(1).plus().
+                build();
+
+        growth.logToConsole(true);
+
+        testResult = growth.calc(10, -0.5D);
+
+        System.out.println("@@@ Expected answer was : " + expectedResult
+                           + "\n@@@ Test result:          " + testResult);
+        return (testResult == expectedResult);
+    }
+
+    public boolean test_ModulusWithConstant(){
+
+        double expectedResult = 1;
+        double testResult;
+
+        Calculation isNumberEqualCalculation = new Calculation.CalcBuilder().create().
+                modulus().constant(2).
+                build();
+
+        isNumberEqualCalculation.logToConsole(true);
+
+        testResult = isNumberEqualCalculation.calc(7);
+
+        System.out.println("@@@ Expected answer was : " + expectedResult
+                           + "\n@@@ Test result:          " + testResult);
+        return (testResult == expectedResult);
+
     }
 }

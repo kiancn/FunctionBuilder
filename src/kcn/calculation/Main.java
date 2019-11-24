@@ -39,26 +39,19 @@ public class Main
 
 
 
-        System.out.println("\nGrowth formula: ");
-        System.out.println("(Starting value * (" + // analogous to ' expression().multiply(). '
-                           "1 + rate of change))" + // analogous to ' plus().
-                           " = end value "); // no analogy in declaration
-        Calculation growth = new Calculation.CalcBuilder().
-                create().
-                expression().multiply().
-                plus().
-                build();
-
-        System.out.println("(42*(1+(-0.5))) = " + growth.calc(42, 1, -0.5));
-
-
-
         /** An test class with examples :) */
         CalculationTest testCalculationA = new CalculationTest();
 
         System.out.println(testCalculationA.test_6expressions_0_binding());
         System.out.println(testCalculationA.test_radiusOfCircle());
-        System.out.println(testCalculationA.test_radiusOfCircleX2());
+        System.out.println(testCalculationA.test_diameterOfCircle());
+
+        System.out.println(testCalculationA.test_PythagorasWithConstants());
+
+        System.out.println(testCalculationA.test_Growth());
+        System.out.println(testCalculationA.test_GrowthWithConstant());
+
+        System.out.println(testCalculationA.test_ModulusWithConstant());
     }
     // Read in case of trouble: remember, first number is assumed in the definition of the equation.
 
