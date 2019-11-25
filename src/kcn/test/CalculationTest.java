@@ -53,7 +53,7 @@ public class CalculationTest
         double testResult;
 
         System.out.println("\nCalculationTest.test_radiusOfCircle");
-        System.out.println("@@@ Testing: ((x-a)^2+(y-b)^2)sqrt" +
+        System.out.println("@@@ Testing: ((x-a)^k+(y-b)^k)sqrt" +
                            "\t\t((5-2)^2+(6-2)^2)root2");
 
         Calculation radiusOfCircle = new Calculation.CalcBuilder().create().
@@ -71,6 +71,34 @@ public class CalculationTest
         return testResult == expectedResult;
     }
 
+    /* radius of circle: ((x-a)^2+(y-b)^2)sqrt*/
+    public boolean test_radiusOfCircleWithConstants()
+    {
+
+        double expectedResult = 5;
+        double testResult;
+
+        System.out.println("\nCalculationTest.test_radiusOfCircle");
+        System.out.println("@@@ Testing: ((x-a)^2+(y-b)^2)sqrt" +
+                           "\n\t\t((5-2)^2+(6-2)^2)root2");
+
+        Calculation radiusOfCircle = new Calculation.CalcBuilder().create().
+                minus().pow().constant(2).
+                expression().plus().
+                minus().pow().constant(2).
+                expression().root().constant(2).
+                build();
+
+        radiusOfCircle.logToConsole(true);
+
+        testResult = radiusOfCircle.calc(5, 2, 6, 2);
+
+        System.out.println("@@@ Expected answer was : " + expectedResult
+                           + "\n@@@ Test result:        " + testResult);
+
+        return testResult == expectedResult;
+    }
+
     /**
      * Tests multiple complex/bound expressions;
      */
@@ -79,10 +107,9 @@ public class CalculationTest
 
         double expectedResult = 10;
         double testResult;
-
-        System.out.println("\nCalculationTest.test_radiusOfCircleX2");
+        System.out.println("\nCalculationTest.test_diameterOfCircle");
         System.out.println("@@@ Testing: (((x-a)^2+(y-b)^2)sqrt)*2)" +
-                           "\t\t(((5-2)^2+(6-2)^2)root2)*2");
+                           "\n\t\t(((5-2)^2+(6-2)^2)root2)*2");
 
         Calculation radiusOfCircle = new Calculation.CalcBuilder().create().
                 minus().pow().
@@ -130,6 +157,7 @@ public class CalculationTest
 
     public boolean test_Growth()
     {
+        System.out.println("CalculationTest.test_Growth");
         double expectedResult = 5;
         double testResult;
 
@@ -150,6 +178,7 @@ public class CalculationTest
 
     public boolean test_GrowthWithConstant()
     {
+        System.out.println("CalculationTest.test_GrowthWithConstant");
         double expectedResult = 5;
         double testResult;
 
@@ -168,7 +197,9 @@ public class CalculationTest
         return (testResult == expectedResult);
     }
 
-    public boolean test_ModulusWithConstant(){
+    public boolean test_ModulusWithConstant()
+    {
+        System.out.println("CalculationTest.test_ModulusWithConstant");
 
         double expectedResult = 1;
         double testResult;

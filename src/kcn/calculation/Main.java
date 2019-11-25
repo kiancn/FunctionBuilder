@@ -18,26 +18,19 @@ public class Main
         // A few examples:
 
         /* This is how you might express the most famous theorem of Pythagoras (without constants :( ))*/
-        // Length of hypotenuse: length = ((x^y)+(z^v))root(w)
-        // (there is no square root, but the general rootfunction:
-        // so square root of x, is pseudo-written like ' x root 2 ')
-        // and yes, w is the constant 2. constants are on my list of upcoming improvements.......
+        // Length of hypotenuse: length = ((x^2)+(z^2))root(2)
 
         Calculation pytagoras = new Calculation.CalcBuilder().
                 create(). // create() performs baseline initialization on builder-object
 
-                pow(). // analogous to:                 ((x^y
-                expression().plus(). // analogous to:   )+(
-                pow(). // analogous to:                 z^v
-                expression().root() // analogous to:    ))root(w)
+                pow().constant(2). // analogous to:                 ((x^2
+                expression().plus(). // analogous to:               )+(
+                pow().constant(2). // analogous to:                 z^2
+                expression().root().constant(2) // analogous to:    ))root(2)
 
                 .build(); // returns the finished Calculation object
 
-
-        System.out.println("sprRoot(5^2 + 4^2) = " + pytagoras.calc(5, 2, 4, 2, 2));
-        System.out.println("sprRoot(3^2 + 4^2) = " + pytagoras.calc(3, 2, 4, 2, 2));
-
-
+        System.out.println("sprRoot(4^2 + 3^2) = " + pytagoras.calc(4, 3));
 
         /** An test class with examples :) */
         CalculationTest testCalculationA = new CalculationTest();
@@ -45,13 +38,12 @@ public class Main
         System.out.println(testCalculationA.test_6expressions_0_binding());
         System.out.println(testCalculationA.test_radiusOfCircle());
         System.out.println(testCalculationA.test_diameterOfCircle());
-
         System.out.println(testCalculationA.test_PythagorasWithConstants());
-
         System.out.println(testCalculationA.test_Growth());
         System.out.println(testCalculationA.test_GrowthWithConstant());
-
         System.out.println(testCalculationA.test_ModulusWithConstant());
+
+        System.out.println(testCalculationA.test_radiusOfCircleWithConstants());
     }
     // Read in case of trouble: remember, first number is assumed in the definition of the equation.
 

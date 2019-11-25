@@ -87,7 +87,7 @@ public class Calculation
         /* do check of number of factors supplied/expected; abort if no match is found  */
         if(currentInputFactors.length != numberOfInputFactorsExpected + 1)
         {
-            System.out.println("From Func: Wrong number of arguments given:" + currentInputFactors.length
+            System.out.println("From Calculation: Wrong number of arguments given:" + currentInputFactors.length
                                + ". This equation requires " + numberOfInputFactorsExpected + " arguments.");
             return -1;
         }
