@@ -6,9 +6,10 @@ The Calculation class allows the creation of objects able to perform complex cal
 <p>
  
          /* This is how you might declare the most famous theorem of Pythagoras as a Calculation*/
+
+        // WITHOUT constants:        
+        // Length of hypotenuse: length = ((x^y)+(z^v))root(w)  
          
-        // Length of hypotenuse: length = ((x^y)+(z^v))root(w)
-        
         Calculation pytagoras = new Calculation.CalcBuilder().
                 create(). // performs baseline initialization on builder-object
                 pow().                  // analogous to:   ((x^y
@@ -20,11 +21,26 @@ The Calculation class allows the creation of objects able to perform complex cal
         System.out.println("sprRoot(5^2 + 4^2) = " + pytagoras.calc(5, 2, 4, 2, 2));        
         System.out.println("sprRoot(3^2 + 4^2) = " + pytagoras.calc(3, 2, 4, 2, 2));
         
+        
+        // WITH constants:
+         // Length of hypotenuse: length = ((x^2)+(y^2))root(2)
+         
+        Calculation pytagoras = new Calculation.CalcBuilder().
+                create(). // performs baseline initialization on builder-object
+                pow().constant(2)                       ((x^2
+                expression().plus().                         )+(
+                pow().constant(2)                               y^2
+                expression().root().constant(2)                    ))root(2)
+                .build(); // returns the finished Calculation object
+
+         // which is then called with only two arguments, so:
+        System.out.println("sprRoot(5^2 + 4^2) = " + pytagoras.calc(5, 4));        
+        System.out.println("sprRoot(3^2 + 4^2) = " + pytagoras.calc(3, 4));
+        
         // Note: 
         // There is no square root, but the general root-function;
         // so ' square root of x ', is pseudo-written like ' x root 2 ').
-        // And yes, y, v, and w are all the constant 2.
-        // Constants are first on my list of upcoming improvements.......
+        
 <p></p>
 
 <p></p>
