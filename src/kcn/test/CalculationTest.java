@@ -7,15 +7,18 @@ testing is/can be, but I know almost nothing about that subject */
 public class CalculationTest
 {
 
-    /* test non-bound, single expression (two input factors) Calculation
-     * Im thinking:
-     * 5 * 7 = 35
-     * 20 + 5 = 25 */
+    public void run_allTests()
+    {
+        System.out.println(test_6expressions_0_binding());
+        System.out.println(test_radiusOfCircle());
+        System.out.println(test_diameterOfCircle());
+        System.out.println(test_PythagorasWithConstants());
+        System.out.println(test_Growth());
+        System.out.println(test_GrowthWithConstant());
+        System.out.println(test_ModulusWithConstant());
 
-    /* test non-bound, two-expression (three input factors) Calculation
-     * Im thinking:
-     * (10 / 2) * 4 = 20
-     * 25 + 15 - 30 = 10 */
+        System.out.println(test_radiusOfCircleWithConstants());
+    }
 
 
     /* test non-bound, five expression (6 input factors) Calculation
@@ -88,6 +91,14 @@ public class CalculationTest
                 minus().pow().constant(2).
                 expression().root().constant(2).
                 build();
+
+
+//        Calculation radiusOfCircle = new Calculation.CalcBuilder().create().
+//                minus().pow().constant(2).
+//                expression().plus().
+//                minus().pow().constant(2).
+//                expression().root().constant(2).
+//                build();
 
         radiusOfCircle.logToConsole(true);
 

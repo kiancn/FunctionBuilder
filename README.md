@@ -1,11 +1,75 @@
 # FunctionBuilder - more like Calculation builder.
  
+ 
 The Calculation class allows the creation of objects able to perform complex calculations.
-<p>You can check out the examples in the CalculationTest-class.</p>
+<p>You can check out the examples in the Test_TextCalculation-class 
+or the examples of how to use the builder pattern in CalculationTest-class.<p></p>
+
+    Basic use:
+        // may you want to calculate hypotenuse's  - sprt(a^2+b^2)
+    Calculation pythagoras = new Calculation("(n^2)+(n^2)r(2)"); 
+    
+        // you'd do a calculation like this;
+    double someHypotenuse = pythagoras.calc(3,4);       
+
+  <p><b>Syntax for constructing calculation strings:</b></p>
+  
+     First character must be a '('. Last character must be a ')'.
+  
+  <p>Second char of a calc string must be either a number (marking a constant),
+  or an n (marking a variable input, which can then be supplied when running calc(double...)
+  to do a calculation).</p>
+  <p>In general a calculation can consist of factors (constants or input variables) and operators;
+  </p>
+  <p>Implemented operators are: <b>/ , * , - , + , r (root), p (pow), m (mod)</b></p>
+  <p>All implemented operators are accept two factors and return a double.</p>
+  <p></p>
+  <p><b>Single expressions</b> are written between parenthesis; a single expression
+  is any combination of factors and operators that can be resolved going strictly left
+  to right.</p>
+  <p>Negative constants are prefixed with ' ~ ' (and NOT - ) </p>
+  <p>Unlike normal java math notation, this is a possible single expression: (n-n*n)</p>
+  In customary math notation you'd write that like: (n-n)*n
+  <p></p>
+  <p>A few examples:
+  
+          TextCalculation syntax:   4*~5/5
+          Orinary math syntax:      ((4*-5)/5)
+          
+          TextCalculation syntax:   1+3*5/6
+          Orinary math syntax:      (((1+3)*5)/6)
+          
+          TextCalculation syntax:   4*5-6*5p2+1
+          Orinary math syntax:      ((((4*5)-6)*5)pow2)+1)
+          
+  <p><i>Be aware that in all examples, factors that you need to be input/
+  method parameter variables are written as ' n '. </i></p>
+  <p></p>
+  </p>
+  <p></p>
+  <p><b>Binding operators</b> is my term of art for operators placed <i>outside parenthesis</i>:
+  a binding operator is any operator mentioned above; like above, each operator is resolved
+  strictly going from left to right. A binding operator acts on the two evaluated expressions
+  immediately adjacent to it.</p>
+  
+      A binding operator is written as ')' 'operator' '('
+      
+      Pattern :  )[/*-+rm] ( 
+      
+      TextCalculation syntax:   5+6*5)*(5/5         <- here )*( is a binding operator
+      Orinary math syntax:      ((5+6)*5)*(5/5)     
+      
+  
+  <p>You can get the pythagorean sentence to calculate the hypotenuse of a right angled triangle like: </p>
+  
+          Calculation hypotenuse = new Calculation("(n^2)+(n^2)r(2)");          
+            // Or %-increase from A to B:
+          Calculation increase = new Calculation("(n/n-1*100)");
 
 <p>
  
-         /* This is how you might declare the most famous theorem of Pythagoras as a Calculation*/
+         /* If you decide to work directly with the CalcBuilder
+          this is how you might declare the most famous theorem of Pythagoras as a Calculation*/
 
         // WITHOUT constants:        
         // Length of hypotenuse: length = ((x^y)+(z^v))root(w)  
@@ -47,6 +111,10 @@ The Calculation class allows the creation of objects able to perform complex cal
 <p><b>More soft practical introduction upcoming .. soon. </b></p>
 <p></p>
 <p>*/******/*</p>
+
+        */***I realize this sections contains a bit of linguistic malfunction ***/*
+        */***I'll fix it. But it it's readable/decipherable. ***/*
+
 <p><b>Unfinished technical intro:</b></p>
 <p></p>
 <p><b>Calculations are evaluated in the following sequence of steps:</b></p>
@@ -81,7 +149,7 @@ two expressions that could be written in seperate parenthesis, like <i>(2) * (5+
 <p><i><b>1. Expressions are evaluated left to right: </b></i>
 <p>b. <i>Operators <b>act</b> on the running total/result of current expression </i>with the next
 single factor (for a binding operator, this is the next whole expression)):
-<\runningResult \operator \nextFactor></runningResult></b></p>
+<b> <\runningResult \operator \nextFactor> [runningResult] </b></p>
 <b>Practical example:</b>
 <p>This is a possible single expression: ((4+6)/5)*2</p>
 

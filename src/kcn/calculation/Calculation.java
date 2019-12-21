@@ -27,7 +27,7 @@ import java.util.Set;
  * an expression is any set of factors and operators that can be evaluated/calculated going from left to
  * right (see rules).</p>
  * <p>A <b>binding operator is any operator <i>+, -, /, *, mod, pow </i>or<i> root</i></b> acting on
- * two expressions that could be written in seperate parenthesis, like <i>(2) * (5+7)</i>  - here * is a
+ * two expressions that could be written in separate parenthesis, like <i>(2) * (5+7)</i>  - here * is a
  * binding operator.</p>
  */
 public class Calculation
@@ -38,7 +38,7 @@ public class Calculation
     private final int numberOfInputFactorsExpected; // number of arguments expected from user
 
     private HashMap<Integer, Double> constants; // <K,V> Key is position in sequence of factors, and V is
-    // the constant itself; the hashmap is interpolated into the given arguments when calling calc() before
+    // the constant itself; the HashMap is interpolated into the given arguments when calling calc() before
     // any calculations are done.
 
     private ArrayList<ArrayList<Operator>> listsOfExpressionOperators; // lists of operators; operators for
@@ -46,10 +46,14 @@ public class Calculation
     private ArrayList<Operator> listOfBindingOperators;
 
 
-    private boolean logCalculationToConsole; // if true, Calculation object will log procress to console.
+    private boolean logCalculationToConsole; // if true, Calculation object will log process to console.
 
     private double[] currentInputFactors; // this field/attribute is reassigned every time calc() is called
     // and modified for constants before first calculations take place.
+
+    public Calculation(String calculation){
+        this(new TextCalculation(calculation).getBuilder());
+    }
 
     private Calculation(CalcBuilder builder)
     {
@@ -65,6 +69,12 @@ public class Calculation
     public static double equateIt(Calculation calculation, double... values)
     {
         return calculation.calc(values);
+    }
+
+    /** Single use Calculation object returns the result of your input values put though
+     * the calculation you specified in the calculation-String */
+    public static double equateIt(String calculation, double... values){
+        return new Calculation(calculation).calc(values);
     }
 
     /**
@@ -105,7 +115,7 @@ public class Calculation
         int positionInFactorCount = 0;
 
         /* Calculating 'first round' of expressions (expressions between binding operators),
-         * iteraing through the lists of expression operators while going through array of actual factors */
+         * iterating through the lists of expression operators while going through array of actual factors */
 
         for(int expressionCount = 0; expressionCount < numberOfExpressions; expressionCount++)
         {
@@ -138,11 +148,6 @@ public class Calculation
 
         /* adding each number to list (do not want to use Arrays.toList, it links the list and the array.) */
         for(double number : inputFactors) { tempListOfFactors.add(number); }
-
-        //// NOT implemented: when the code is ready to accept repeated variables (ex. 'the same x' is
-        // acted on multiple times in formula), this is the place to interpolate repeating numbers
-        // (that are not constants) - into the HashMap constants ( which at the point needs another
-        // name )
 
             /* going through HashMap constants, and adding/interpolating constants to/with temp list of
             factors (see source of this solution at bottom ) */
@@ -229,7 +234,7 @@ public class Calculation
     }
 
     /**
-     * Calll method with to 'true' turn on console-logging of calculation process and calculation stats on
+     * Call method with to 'true' turn on console-logging of calculation process and calculation stats on
      */
     public void logToConsole(boolean logCalculationToConsole)
     {
@@ -244,10 +249,12 @@ public class Calculation
         private int numberOfFactors; // total number of factors in calculation
 
         private int numberOfConstants; // registered constants (each constant mean -=1 to
-        // numberOfInputFactorsForCalculation)
+        //                                           numberOfInputFactorsForCalculation)
         private int numberOfArgumentsRequired; // number of arguments required by final calculation
 
-        private boolean newExpression = false;
+        private boolean newExpression = false; // boolean flips to true, when expression() is fired,
+        //                                        which implies that the next operator is going to be
+        //                                        interpreted as a binding operator.
 
         private ArrayList<Operator> listOfBindingOperators;
         private ArrayList<ArrayList<Operator>> listsOfExpressionOperators;
@@ -262,7 +269,7 @@ public class Calculation
             listsOfExpressionOperators.add(new ArrayList<>()); // newing up the first list
 
             numberOfExpressions = 0;
-            numberOfFactors = 0; // new try-out
+            numberOfFactors = 0;
             newExpression = false;
 
             constants = new HashMap<>();
@@ -270,16 +277,10 @@ public class Calculation
             return this;
         }
 
+        /** Calling the method returns a Calculation object: Method to be used in conjunction with builder
+         * pattern (where the method is the last one called in the defining series of calls).*/
         public Calculation build()
         {
-            /* total number of factors in calculation;
-            given by registered number of operators + registered number of expressions
-            (because each expression means +1 factor in the calculation;;; because there is not added +1
-            to the operator mentioned after expression() is called):
-            (it seems this step is superfluous, since the +1 for each factor might as well be added when
-            the operator is added; so, restructure addOperator, please. ) */
-
-//            numberOfFactors += numberOfExpressions;
 
             /* expected number of arguments from user will be the total number of factors minus the number
             of constants in the calculation */
