@@ -65,6 +65,7 @@ public class TextCalculation
     /* The object being built from the string supplied in constructor */
     private Calculation calculation;
     private String suppliedString; // string supplied for interpretation
+    private String reconstructedString; // string supplied for interpretation
     private Pattern operatorAndNumber;
     private Pattern operatorAndN;
     private Pattern bindingOperator;
@@ -93,12 +94,15 @@ public class TextCalculation
         calculation = getNewCalculation(suppliedString);
     }
 
+
     public Calculation getCalculation(){ return calculation; }
 
     public String getSuppliedString(){ return suppliedString; }
+    public String getReconstructedString(){ return reconstructedString; }
 
     Calculation.CalcBuilder getBuilder(){ return calcBuilder; }
 
+    /** Method interprets received string and returns a new inititialized Calculation object */
     public Calculation getNewCalculation(String string)
     {
         /* This trims off the surrounding brackets; they are a hard assumption */
@@ -121,11 +125,15 @@ public class TextCalculation
 
             while(stillMatching)
             {
+                /* checking which pattern appears next in sequence of chars in supplied calculationText
+                * is it a binding operator?  */
                 if(bindingOperatorMatcher.find(nextPosition) && bindingOperatorMatcher.start() == nextPosition)
                 {
                     interpretBindingOperator(bindingOperatorMatcher.group());
                     nextPosition = bindingOperatorMatcher.end();
 
+                    /* If there was a match on binding operator, the next match needs to be a number or
+                    'n': */
                     if(numberOrNMatcher.find(nextPosition) && numberOrNMatcher.start() == nextPosition)
                     {
                         interpretNumberOrN(numberOrNMatcher.group());
@@ -137,14 +145,14 @@ public class TextCalculation
                                            "This is necessary: operators cannot act on each other.");
                     }
                 }
-
+                /* If it wasn't a binding operator, maybe an operator and a number? */
                 if(operatorNumberMatcher.find(nextPosition) && operatorNumberMatcher.start() == nextPosition)
                 {
                     interpretOperatorAndNumber(operatorNumberMatcher.group());
                     nextPosition = operatorNumberMatcher.end();
                     continue;
                 }
-
+                /* Perhaps it is an operator and an 'n' */
                 if(operatorNMatcher.find(nextPosition) && operatorNMatcher.start() == nextPosition)
                 {
                     interpretOperatorAndN(operatorNMatcher.group());
@@ -275,5 +283,10 @@ public class TextCalculation
         calcBuilder.expression();
         interpretOperator(subSet.substring(1));
         System.out.print(subSet);
+    }
+
+    @Override
+    public String toString(){
+        return suppliedString;
     }
 }

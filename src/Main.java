@@ -31,7 +31,7 @@ public class Main
         // Or simply, by supplying a string;
         // Length of hypotenuse: length = ((x^2)+(z^2))root(2)
         Calculation pyt = new Calculation("(n^2)+(n^2)r(2)");
-        System.out.println("Pytagoras again from ");
+        System.out.println("Pytagoras again from string: input 3,4: " +pyt.calc(3,4));
 
         /** An test class with examples :) */
         CalculationTest calculationTest = new CalculationTest();

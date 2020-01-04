@@ -2,7 +2,7 @@ package kcn.calculation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
+
 
 /* This solution satisfies a lot of lacks of the first one, and I believe
  * -- ++ added support for constants right now
@@ -35,6 +35,12 @@ public class Calculation
 
     private final int numberOfExpressions;
     private final int numberOfFactors; // total number of factors in calculation
+
+    public int getNumberOfInputFactorsExpected()
+    {
+        return numberOfInputFactorsExpected;
+    }
+
     private final int numberOfInputFactorsExpected; // number of arguments expected from user
 
     private HashMap<Integer, Double> constants; // <K,V> Key is position in sequence of factors, and V is
@@ -95,14 +101,14 @@ public class Calculation
         }
 
         /* do check of number of factors supplied/expected; abort if no match is found  */
-        if(currentInputFactors.length != numberOfInputFactorsExpected + 1)
+        if(currentInputFactors.length != numberOfInputFactorsExpected)
         {
             System.out.println("From Calculation: Wrong number of arguments given:" + currentInputFactors.length
                                + ". This equation requires " + numberOfInputFactorsExpected + " arguments.");
             return -1;
         }
 
-        /* inserting constants in supplied sequence of if necessary */
+        /* inserting constants in supplied sequence of factors if necessary */
         if(numberOfFactors != numberOfInputFactorsExpected) // if these are not equal, there are constants
         {
             /* ArrayList is temporary home of factor list under construction*/
@@ -158,7 +164,7 @@ public class Calculation
             // since add(int,T) attempts to add T-element at supplied index, it should fail when
             // trying to add an element beyond it current size , but doesn't; i believe the documentation is
             // faulty, and that an element added at 'last index + 1' are simply add()'ed to the list, at
-            // the now existent index position (so it'd fail when sought index overshot by by than one).
+            // the now existent index position (so it'd fail when sought index overshot by more than one).
         }
 
 
@@ -281,14 +287,14 @@ public class Calculation
          * pattern (where the method is the last one called in the defining series of calls).*/
         public Calculation build()
         {
-
+            numberOfFactors += 1; // because, after the last operator add, there is always room for the
+            // factor it works on
+            numberOfExpressions += 1; // because there is always at least one expression.
             /* expected number of arguments from user will be the total number of factors minus the number
             of constants in the calculation */
             numberOfArgumentsRequired = numberOfFactors - numberOfConstants;
 
-            numberOfFactors += 1; // because, after the last operator add, there is always room for the
-            // factor it works on
-            numberOfExpressions += 1; // because there is always at least on expression.
+
             return new Calculation(this);
         }
 
