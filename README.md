@@ -1,5 +1,4 @@
 # FunctionBuilder - more like Calculation builder.
-
  
 <b>The Calculation class </b>allows the creation of objects able to perform complex calculations.
 
@@ -200,10 +199,10 @@ number/factor, and that the right operand is an (evaluated) expression.</p>
          
         Calculation pytagoras = new Calculation.CalcBuilder().
                 create(). // performs baseline initialization on builder-object
-                pow().                  // analogous to:   ((x^y
+                pow().                  // analogous to:  "(n^n
                 expression().plus().    // analogous to:        )+(
-                pow().                  // analogous to:           z^v
-                expression().root()     // analogous to:              ))root(w)
+                pow().                  // analogous to:           n^n
+                expression().root()     // analogous to:              )root(n)"
                 .build(); // returns the finished Calculation object
 
         System.out.println("sprRoot(5^2 + 4^2) = " + pytagoras.calc(5, 2, 4, 2, 2));        
@@ -215,10 +214,10 @@ number/factor, and that the right operand is an (evaluated) expression.</p>
          
         Calculation pytagoras = new Calculation.CalcBuilder().
                 create(). // performs baseline initialization on builder-object
-                pow().constant(2)                       ((x^2
+                pow().constant(2)                      "(n^2
                 expression().plus().                         )+(
-                pow().constant(2)                               y^2
-                expression().root().constant(2)                    ))root(2)
+                pow().constant(2)                               n^2
+                expression().root().constant(2)                    )root(2)"
                 .build(); // returns the finished Calculation object
 
          // which is then called with only two arguments, so:
@@ -230,7 +229,9 @@ number/factor, and that the right operand is an (evaluated) expression.</p>
         // so ' square root of x ', is pseudo-written like ' x root 2 ').
 <p><i>There are probably a few more rules that I didn't realize yet, sorry. This is a work in
 progress and I'm not a mathematician.</i></p>
-<p></p><p></p>
+
+
+#<p><b>Goals:<b></p>
 
         .\~/*~:~* \~/*~:~* \~/*~:~* \~/*~:~* \~/*~:~* \~/*~:~* \~/*~:~* \~/*~:~* \~/.
         

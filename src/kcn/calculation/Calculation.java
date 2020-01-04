@@ -6,7 +6,8 @@ import java.util.HashMap;
 
 /* This solution satisfies a lot of lacks of the first one, and I believe
  * -- ++ added support for constants right now
- * -- support for unary operators upcoming */
+ * -- support for unary operators upcoming
+ * -- support for log, log10,  */
 
 /**
  * The Calculation class allows the creation of objects able to perform complex calculations.
