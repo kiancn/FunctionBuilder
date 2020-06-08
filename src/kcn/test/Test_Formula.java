@@ -5,25 +5,23 @@ import kcn.calculation.Formula;
 import java.util.ArrayList;
 
 /* Code must speak for itself, because there is no introduction yet.
-* Test of Formula class */
+ * Test of Formula class */
 public class Test_Formula
 {
     public static void main(String[] args)
     {
 
 
-        Formula funk = new Formula("(n*2-1)^(n)");
-        double[] results = funk.computeSeries(new Double[]{1d, 2d, 3d}, new Double[]{2d, 3d, 4d});
+        Formula growthF = new Formula("(n^2)+(n^2)r(2)");
 
-        for(double result : results) { System.out.println(result); }
+        System.out.println(growthF);
 
-        System.out.println();
-        Formula growthF = new Formula("(n/n*100)");
-        System.out.println();
-        double[] grownNumbers = growthF.computeSeries(new Double[]{50d, 50d, 50d},
-                                                      new Double[]{100d, 150d, 200d});
+        growthF.getCalculation().logToConsole(true);
+
+        double[] grownNumbers = growthF.computeSeries(new Double[]{4d, 50d, 9d},
+                                                      new Double[]{5d, 150d, 14d});
+
         for(double result : grownNumbers) { System.out.println(result); }
-
 
 
         System.out.println();
@@ -33,13 +31,11 @@ public class Test_Formula
         for(double result : grownNumbers) { System.out.println(result); }
 
 
-
         System.out.println();
         growthF = new Formula("(n/n*100)");
-        System.out.println();
+        System.out.println(growthF);
         grownNumbers = growthF.computeSeries(new Double[]{100d, 150d, 200d});
         for(double result : grownNumbers) { System.out.println(result); }
-
 
 
         ArrayList<Double> doubles = new ArrayList<>();
@@ -53,9 +49,11 @@ public class Test_Formula
 
         double[] results1 = _1stdegreeFormula.computeSeries(doublesArray);
 
-        int c = 3;
-        for(double n: results1){
-            System.out.println("\t"+c+ "\t--> (n*2-5) --->\t" + n );
+        int c = 0;
+        for(double n : results1)
+        {
+            System.out.println("\t" + doubles.get(c++) + "*2-5) --->\t" + n);
+//            System.out.println("\t" + doubles.get(c++) + "\t--> (n*2-5) --->\t" + n);
         }
     }
 }

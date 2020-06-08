@@ -65,12 +65,13 @@ public class TextCalculation
     /* The object being built from the string supplied in constructor */
     private Calculation calculation;
     private String suppliedString; // string supplied for interpretation
-    private String reconstructedString; // string supplied for interpretation
+    //    private String reconstructedString; // string supplied for interpretation
     private Pattern operatorAndNumber;
     private Pattern operatorAndN;
     private Pattern bindingOperator;
     private Pattern numberOrN;
     private Calculation.CalcBuilder calcBuilder;
+    private boolean initializationOK; // boolean true signifies that the Calculation.CalcBuilder
 
     // this block is run when the class is instantiated, before the constructor is called.
     {
@@ -79,6 +80,7 @@ public class TextCalculation
         bindingOperator = Pattern.compile("[)][/*\\-+mr^]([(])");
         numberOrN = Pattern.compile("(" + numberPattern + "|[n]{1}){1}");
     }
+    //was initialized without errors.
 
     /**
      * Use this constructor to immediately initialize a Calculation internally.
@@ -91,18 +93,24 @@ public class TextCalculation
     public TextCalculation(String calculationText)
     {
         suppliedString = calculationText;
+
+        /* Since Calculation has not yet been initialized, false. */
+        initializationOK = false;
+
         calculation = getNewCalculation(suppliedString);
     }
 
+    public boolean isInitializationOK(){ return initializationOK; }
 
     public Calculation getCalculation(){ return calculation; }
 
     public String getSuppliedString(){ return suppliedString; }
-    public String getReconstructedString(){ return reconstructedString; }
 
     Calculation.CalcBuilder getBuilder(){ return calcBuilder; }
 
-    /** Method interprets received string and returns a new inititialized Calculation object */
+    /**
+     * Method interprets received string and returns a new initialized Calculation object
+     */
     public Calculation getNewCalculation(String string)
     {
         /* This trims off the surrounding brackets; they are a hard assumption */
@@ -112,6 +120,9 @@ public class TextCalculation
         Matcher operatorNMatcher = operatorAndN.matcher(string);
         Matcher bindingOperatorMatcher = bindingOperator.matcher(string);
         Matcher numberOrNMatcher = numberOrN.matcher(string);
+
+        /* state set to true, and unless error occurs, state remains true */
+        initializationOK = true;
 
         boolean stillMatching = true;
         int nextPosition = 0;
@@ -126,7 +137,7 @@ public class TextCalculation
             while(stillMatching)
             {
                 /* checking which pattern appears next in sequence of chars in supplied calculationText
-                * is it a binding operator?  */
+                 * is it a binding operator?  */
                 if(bindingOperatorMatcher.find(nextPosition) && bindingOperatorMatcher.start() == nextPosition)
                 {
                     interpretBindingOperator(bindingOperatorMatcher.group());
@@ -168,16 +179,24 @@ public class TextCalculation
 
         } else
         {
+            // if code reaches here, obviously there was a problem, so
+            initializationOK = false;
+
             System.out.println("Your calculation string was not formatted properly from index 0.");
         }
 
         System.out.println("Your declaring text might have contained errors." +
-                           "\nYour new Calculation object is non-functional. Sorry.");
+                           "\n Your new Calculation object is non-functional. Sorry." +
+                           "\n The Calculation-object you did get back does no" +
+                           "\n computations, takes parameters (calc() is still callable and " +
+                           "\n will return -1)");
+        // if code reaches here, obviously there was a problem, so
+        initializationOK = false;
         return new Calculation.CalcBuilder().create().build();
     }
 
     /**
-     * Method runs once, to instantiate a Calculation
+     * Method runs once, to instantiate a Calculation (create() performs a baseline initialization)
      */
     private void initializeCalculationBuilder()
     {
@@ -212,7 +231,10 @@ public class TextCalculation
 
         } catch(NumberFormatException e)
         {
-            System.out.println("Number '" + subSet + "' is malformed.");
+            System.out.println("Number '" + subSet + "' is malformed.\n" +
+                               "This is not a possible number format:\t\"" + subSet + "\"");
+            // if code reaches here, obviously there was a problem, so
+            initializationOK = false;
         }
     }
 
@@ -244,6 +266,8 @@ public class TextCalculation
             default:
                 System.out.println("Something happened. '" + subSet.charAt(0) + "' is" +
                                    "not an operator (implemented).");
+                // if code reaches here, obviously there was a problem, so
+                initializationOK = false;
         }
     }
 
@@ -252,12 +276,10 @@ public class TextCalculation
         /* n, indicating a variable factor, is the standard, and needs not report to calcBuilder */
         if(group.charAt(0) == 'n')
         {
-            System.out.print(group);
             return;
         }
 
         interpretNumber(group);
-        System.out.print(group);
     }
 
     private void interpretOperatorAndNumber(String subSet)
@@ -265,15 +287,12 @@ public class TextCalculation
         /* the first sign will be an operator, so we'll switch through that */
         interpretOperator(subSet);
         interpretNumber(subSet.substring(1));
-
-        System.out.print(subSet);
     }
 
 
     private void interpretOperatorAndN(String subSet)
     {
         interpretOperator(subSet);
-        System.out.print(subSet);
     }
 
     private void interpretBindingOperator(String subSet)
@@ -282,11 +301,11 @@ public class TextCalculation
          * thing */
         calcBuilder.expression();
         interpretOperator(subSet.substring(1));
-        System.out.print(subSet);
     }
 
     @Override
-    public String toString(){
+    public String toString()
+    {
         return suppliedString;
     }
 }
